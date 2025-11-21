@@ -96,8 +96,10 @@
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
         
         // API Configuration
-        // NOTE: In the local version, you would replace "" with your actual Gemini API Key.
-        const apiKey = ""; 
+        // -------------------------------------------------------------------------
+        // CRITICAL FIX: The API key has been inserted here.
+        const apiKey = "AIzaSyDUBHkGQCUpvsVOj2akLikOHPVz9Npp5Wg"; 
+        // -------------------------------------------------------------------------
         const modelName = "gemini-2.5-flash-preview-09-2025";
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
@@ -180,6 +182,13 @@
 
         // Main analysis function
         async function analyzeMEDDPICC() {
+            // Check if the API key is set before proceeding
+            if (apiKey === "YOUR_GEMINI_API_KEY" || !apiKey) {
+                errorMessage.textContent = 'API Key is missing or set to the default placeholder. Please insert your actual key.';
+                errorMessage.classList.remove('hidden');
+                return;
+            }
+
             const textToAnalyze = inputTextarea.value.trim();
             errorMessage.classList.add('hidden');
             
